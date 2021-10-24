@@ -7,6 +7,8 @@ const credentials = JSON.parse(json);
 const connection = mysql.createConnection(credentials);
 
 const service = express();
+service.use(express.json());
+
 
 connection.connect(error => {
     if (error) {
@@ -16,7 +18,7 @@ connection.connect(error => {
 });
 
 
-const port = 5001;
+const port = 8443;
 service.listen(port, () => {
     console.log(`We're live on port ${port}!`);
 });
@@ -84,6 +86,32 @@ service.get('/questions/:id', (request, response) => {
         }
     });
 });
+
+service.post('/questions', (request, response) => {
+    const parameters = [
+        request.body.year,
+        request.body.month,
+        request.body.day,
+        request.body.entry,
+    ];
+
+    const query = 'INSERT INTO project2(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
+    connection.query(query, parameters, (error, result) => {
+        if (error) {
+            response.status(500);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            response.json({
+                ok: true,
+                results: 'It worked!',
+            });
+        }
+    });
+});
+
 
 
 // connection.end(); // connection stays open as long as service is running
