@@ -30,6 +30,37 @@ connection.query(selectQuery, (error, rows) => {
     }
 });
 
+const insertQuery = 'INSERT INTO memory(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
+const parameters = ["What is 2 + 2", "1", "2", "3", "4", 4];
+connection.query(insertQuery, parameters, (error, result) => {
+    if (error) {
+        console.error(error);
+    } else {
+        console.log(result);
+    }
+});
+
+function rowToQuestion(row) {
+    return {
+        id: row.id,
+        question: row.question,
+        answer1: row.answer1,
+        answer2: row.answer2,
+        answer3: row.answer3,
+        answer4: row.answer4,
+        correct_ans: row.correct_ans,
+    };
+}
+
+connection.query('SELECT * FROM project2', (error, rows) => {
+    if (error) {
+        console.error(error);
+    } else {
+        const question = rows.map(rowToQuestion);
+        console.log(question);
+    }
+});
+
 
 
 connection.end();
