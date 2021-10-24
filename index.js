@@ -55,14 +55,14 @@ function rowToQuestion(row) {
     };
 }
 // this just gets the json of the vars from rowToQuestion so question, the ans, and correct_ans
-connection.query('SELECT * FROM project2', (error, rows) => {
-    if (error) {
-        console.error(error);
-    } else {
-        const question = rows.map(rowToQuestion);
-        console.log(question);
-    }
-});
+// connection.query('SELECT * FROM project2', (error, rows) => {
+//     if (error) {
+//         console.error(error);
+//     } else {
+//         const question = rows.map(rowToQuestion);
+//         console.log(question);
+//     }
+// });
 
 service.get('/questions/:id', (request, response) => {
     const parameters = [
@@ -153,24 +153,24 @@ service.patch('/questions/:id', (request, response) => {
     });
 });
 
-service.delete('/questions/:id', (request, response) => {
-    const parameters = [parseInt(request.params.id)];
+// service.delete('/questions/:id', (request, response) => {
+//     const parameters = [parseInt(request.params.id)];
 
-    const query = 'UPDATE project2 SET is_deleted = 1 WHERE id = ?';
-    connection.query(query, parameters, (error, result) => {
-        if (error) {
-            response.status(404);
-            response.json({
-                ok: false,
-                results: error.message,
-            });
-        } else {
-            response.json({
-                ok: true,
-            });
-        }
-    });
-});
+//     const query = 'UPDATE project2 SET is_deleted = 1 WHERE id = ?';
+//     connection.query(query, parameters, (error, result) => {
+//         if (error) {
+//             response.status(404);
+//             response.json({
+//                 ok: false,
+//                 results: error.message,
+//             });
+//         } else {
+//             response.json({
+//                 ok: true,
+//             });
+//         }
+//     });
+// });
 
 
 
