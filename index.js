@@ -127,6 +127,32 @@ service.post('/questions', (request, response) => {
     }
 });
 
+service.patch('/questions/:id', (request, response) => {
+    const parameters = [
+        request.body.question,
+        request.body.answer1,
+        request.body.answer2,
+        request.body.answer3,
+        request.body.answer4,
+        parseInt(request.params.id),
+    ];
+
+    const query = 'UPDATE project2 SET question = ?, answer1 = ?, answer2 = ?, answer3 = ?, answer4 = ? WHERE id = ?';
+    connection.query(query, parameters, (error, result) => {
+        if (error) {
+            response.status(404);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            response.json({
+                ok: true,
+            });
+        }
+    });
+});
+
 
 
 // connection.end(); // connection stays open as long as service is running
