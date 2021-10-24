@@ -88,28 +88,43 @@ service.get('/questions/:id', (request, response) => {
 });
 
 service.post('/questions', (request, response) => {
-    const parameters = [
-        request.body.year,
-        request.body.month,
-        request.body.day,
-        request.body.entry,
-    ];
+    if (request.body.hasOwnProperty('question') &&
+        request.body.hasOwnProperty('answer1') &&
+        request.body.hasOwnProperty('answer2') &&
+        request.body.hasOwnProperty('answer3') &&
+        request.body.hasOwnProperty('answer4')) {
 
-    const query = 'INSERT INTO project2(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
-    connection.query(query, parameters, (error, result) => {
-        if (error) {
-            response.status(500);
-            response.json({
-                ok: false,
-                results: error.message,
-            });
-        } else {
-            response.json({
-                ok: true,
-                results: 'It worked!',
-            });
-        }
-    });
+        const parameters = [
+            request.body.question,
+            request.body.answer1,
+            request.body.answer2,
+            request.body.answer3,
+            request.body.answer4,
+        ];
+
+        const query = 'INSERT INTO project2(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
+        connection.query(query, parameters, (error, result) => {
+            if (error) {
+                response.status(500);
+                response.json({
+                    ok: false,
+                    results: error.message,
+                });
+            } else {
+                response.json({
+                    ok: true,
+                    results: result.insertId,
+                });
+            }
+        });
+
+    } else {
+        response.status(400);
+        response.json({
+            ok: false,
+            results: 'Incomplete memory.',
+        });
+    }
 });
 
 
