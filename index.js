@@ -153,6 +153,25 @@ service.patch('/questions/:id', (request, response) => {
     });
 });
 
+service.delete('/questions/:id', (request, response) => {
+    const parameters = [parseInt(request.params.id)];
+
+    const query = 'UPDATE project2 SET is_deleted = 1 WHERE id = ?';
+    connection.query(query, parameters, (error, result) => {
+        if (error) {
+            response.status(404);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            response.json({
+                ok: true,
+            });
+        }
+    });
+});
+
 
 
 // connection.end(); // connection stays open as long as service is running
