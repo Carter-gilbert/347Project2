@@ -30,7 +30,7 @@ connection.query(selectQuery, (error, rows) => {
     }
 });
 
-const insertQuery = 'INSERT INTO memory(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
+const insertQuery = 'INSERT INTO project2(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
 const parameters = ["What is 2 + 2", "1", "2", "3", "4", 4];
 connection.query(insertQuery, parameters, (error, result) => {
     if (error) {
