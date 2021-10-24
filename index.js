@@ -21,7 +21,7 @@ connection.connect(error => {
 // });
 
 
-const selectQuery = 'SELECT * FROM memory';
+const selectQuery = 'SELECT * FROM project2';
 connection.query(selectQuery, (error, rows) => {
     if (error) {
         console.error(error);
