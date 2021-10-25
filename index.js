@@ -93,7 +93,8 @@ service.post('/questions', (request, response) => {
         request.body.hasOwnProperty('answer1') &&
         request.body.hasOwnProperty('answer2') &&
         request.body.hasOwnProperty('answer3') &&
-        request.body.hasOwnProperty('answer4')) {
+        request.body.hasOwnProperty('answer4') &&
+        request.body.hasOwnProperty('correct_ans')) {
 
         const parameters = [
             request.body.question,
