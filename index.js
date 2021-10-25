@@ -66,8 +66,9 @@ function rowToQuestion(row) {
 
 service.get('/questions/:id', (request, response) => {
     const parameters = [
-        parseInt(request.params.question),
-        parseInt(request.params.correct_ans),
+        // parseInt(request.params.question),
+        // parseInt(request.params.correct_ans),
+        parseInt(request.params.id),
     ];
     const query = 'SELECT * FROM project2 WHERE id = ? AND is_deleted = 0';
     connection.query(query, parameters, (error, rows) => {
