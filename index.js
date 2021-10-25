@@ -137,6 +137,7 @@ service.patch('/questions/:id', (request, response) => {
         request.body.answer2,
         request.body.answer3,
         request.body.answer4,
+        request.body.correct_ans,
         parseInt(request.params.id),
     ];
 
