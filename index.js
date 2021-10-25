@@ -141,7 +141,7 @@ service.patch('/questions/:id', (request, response) => {
         parseInt(request.params.id),
     ];
 
-    const query = 'UPDATE project2 SET question = ?, answer1 = ?, answer2 = ?, answer3 = ?, answer4 = ? WHERE id = ?';
+    const query = 'UPDATE project2 SET question = ?, answer1 = ?, answer2 = ?, answer3 = ?, answer4 = ?, correct_ans = ? WHERE id = ?';
     connection.query(query, parameters, (error, result) => {
         if (error) {
             response.status(404);
