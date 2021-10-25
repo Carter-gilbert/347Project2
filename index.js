@@ -102,6 +102,7 @@ service.post('/questions', (request, response) => {
             request.body.answer2,
             request.body.answer3,
             request.body.answer4,
+            request.body.correct_ans,
         ];
 
         const query = 'INSERT INTO project2(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
