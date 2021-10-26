@@ -218,7 +218,7 @@ service.delete('/questions/:id', (request, response) => {
 service.delete('/questions/reset', (request, response) => {
     const parameters = [parseInt(request.params.id)];
 
-    const query = 'DELETE from project2';
+    const query = 'DELETE FROM project2';
     connection.query(query, parameters, (error, result) => {
         if (error) {
             response.status(404);
