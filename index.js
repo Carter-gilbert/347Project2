@@ -214,7 +214,23 @@ service.delete('/questions/:id', (request, response) => {
     });
 });
 
-
+// deletes all values in the db
+service.delete('/questions/reset', (request, response) => {
+    const query = 'UPDATE project2 SET is_deleted = 1 WHERE id > 0';
+    connection.query(query, parameters, (error, result) => {
+        if (error) {
+            response.status(404);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            response.json({
+                ok: true,
+            });
+        }
+    });
+});
 
 
 
