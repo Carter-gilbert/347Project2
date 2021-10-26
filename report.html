@@ -58,13 +58,18 @@
 
     <h2>Patch Request:</h2>
     <h3>https://carter-gilbert.me:8443/questions/:id with a payload of Strings: question, answer1, answer2, answer3, and answer4 also the int correct_ans.</h3>
-    <h3>Example of this request:</h3>
+    <h3>https://carter-gilbert.me:8443/questions/recover/:id this can recover a deleted entry using the id</h3>
+    <h3>Example of these requests:</h3>
     <pre>
     <h3>
         curl --header 'Content-Type: application/json' \
   --request PATCH \
   --data '{"question": "What is 1+1?", "answer1": "2", "answer2": "11", "answer3": "73", "answer4": "10", "correct_ans": 1}' \
   https://carter-gilbert.me:8443/questions/1
+</h3>
+<h3>
+    curl --request PATCH \
+https://carter-gilbert.me:8443/questions/recover/1
 </h3>
 </pre>
 
