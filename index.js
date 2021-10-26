@@ -19,7 +19,7 @@ connection.connect(error => {
     }
 });
 
-app.get('/', function(req, res) {
+app.get('/report', function(req, res) {
     var options = {
         root: path.join(__dirname)
     };
