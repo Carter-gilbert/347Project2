@@ -20,7 +20,7 @@ connection.connect(error => {
 });
 
 service.get('/report.html', function(req, res) {
-    res.sendFile('views/report.html', { root: __dirname })
+    res.sendFile('/report.html', { root: __dirname })
 });
 
 const port = 5001;
