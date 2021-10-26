@@ -6,6 +6,7 @@ const json = fs.readFileSync('credentials.json', 'utf8');
 const credentials = JSON.parse(json);
 const connection = mysql.createConnection(credentials);
 
+var path = require('path');
 const service = express();
 service.use(express.json());
 
@@ -16,6 +17,21 @@ connection.connect(error => {
         console.error(error);
         process.exit(1);
     }
+});
+
+app.get('/report.html', function(req, res) {
+    var options = {
+        root: path.join(__dirname)
+    };
+
+    var fileName = 'report.html';
+    res.sendFile(fileName, options, function(err) {
+        if (err) {
+            next(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
 });
 
 
@@ -62,8 +78,6 @@ function rowToQuestion(row) {
 
 service.get('/questions/:id', (request, response) => {
     const parameters = [
-        // parseInt(request.params.question),
-        // parseInt(request.params.correct_ans),
         parseInt(request.params.id),
     ];
     const query = 'SELECT * FROM project2 WHERE id = ? AND is_deleted = 0';
@@ -84,7 +98,7 @@ service.get('/questions/:id', (request, response) => {
     });
 });
 
-// GET ALL
+
 service.get('/questions', (request, response) => {
     const query = 'SELECT * FROM project2 WHERE is_deleted = 0';
     connection.query(query, (error, rows) => {
