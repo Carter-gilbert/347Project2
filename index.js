@@ -214,6 +214,26 @@ service.delete('/questions/:id', (request, response) => {
     });
 });
 
+// deletes all values in the db
+service.delete('/questions/reset', (request, response) => {
+    const parameters = [parseInt(request.params.id)];
+
+    const query = 'DELETE from project2';
+    connection.query(query, parameters, (error, result) => {
+        if (error) {
+            response.status(404);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            response.json({
+                ok: true,
+            });
+        }
+    });
+});
+
 
 
 // connection.end(); // connection stays open as long as service is running
