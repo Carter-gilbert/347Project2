@@ -19,21 +19,9 @@ connection.connect(error => {
     }
 });
 
-// app.get('/report.html', function(req, res) {
-//     var options = {
-//         root: path.join(__dirname)
-//     };
-
-//     var fileName = 'report.html';
-//     res.sendFile(fileName, options, function(err) {
-//         if (err) {
-//             next(err);
-//         } else {
-//             console.log('Sent:', fileName);
-//         }
-//     });
-// });
-
+service.get('/report.html', function(req, res) {
+    res.sendFile('views/report.html', { root: __dirname })
+});
 
 const port = 5001;
 service.listen(port, () => {
