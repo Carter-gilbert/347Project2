@@ -23,6 +23,17 @@ service.listen(port, () => {
     console.log(`We're live on port ${port}!`);
 });
 
+service.use((request, response, next) => {
+    response.set('Access-Control-Allow-Origin', '*');
+    next();
+});
+
+service.options('*', (request, response) => {
+    response.set('Access-Control-Allow-Headers', 'Content-Type');
+    response.set('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
+    response.sendStatus(200);
+});
+
 
 const selectQuery = 'SELECT * FROM project2';
 connection.query(selectQuery, (error, rows) => {
