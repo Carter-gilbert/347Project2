@@ -45,15 +45,7 @@ connection.query(selectQuery, (error, rows) => {
     }
 });
 
-// const insertQuery = 'INSERT INTO project2(question, answer1, answer2, answer3, answer4, correct_ans) VALUES (?, ?, ?, ?, ?, ?)';
-// const parameters = ["What is 2 + 2", "1", "2", "3", "4", 4];
-// connection.query(insertQuery, parameters, (error, result) => {
-//     if (error) {
-//         console.error(error);
-//     } else {
-//         console.log(result);
-//     }
-// });
+
 
 function rowToQuestion(row) {
     return {
@@ -66,15 +58,7 @@ function rowToQuestion(row) {
         correct_ans: row.correct_ans,
     };
 }
-// this just gets the json of the vars from rowToQuestion so question, the ans, and correct_ans
-// connection.query('SELECT * FROM project2', (error, rows) => {
-//     if (error) {
-//         console.error(error);
-//     } else {
-//         const question = rows.map(rowToQuestion);
-//         console.log(question);
-//     }
-// });
+
 
 service.get('/questions/:id', (request, response) => {
     const parameters = [
@@ -83,6 +67,26 @@ service.get('/questions/:id', (request, response) => {
         parseInt(request.params.id),
     ];
     const query = 'SELECT * FROM project2 WHERE id = ? AND is_deleted = 0';
+    connection.query(query, parameters, (error, rows) => {
+        if (error) {
+            response.status(500);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            const question = rows.map(rowToQuestion);
+            response.json({
+                ok: true,
+                results: rows.map(rowToQuestion),
+            });
+        }
+    });
+});
+
+// GET ALL
+service.get('/questions', (request, response) => {
+    const query = 'SELECT * FROM project2 WHERE is_deleted = 0';
     connection.query(query, parameters, (error, rows) => {
         if (error) {
             response.status(500);
