@@ -19,20 +19,20 @@ connection.connect(error => {
     }
 });
 
-app.get('/report.html', function(req, res) {
-    var options = {
-        root: path.join(__dirname)
-    };
+// app.get('/report.html', function(req, res) {
+//     var options = {
+//         root: path.join(__dirname)
+//     };
 
-    var fileName = 'report.html';
-    res.sendFile(fileName, options, function(err) {
-        if (err) {
-            next(err);
-        } else {
-            console.log('Sent:', fileName);
-        }
-    });
-});
+//     var fileName = 'report.html';
+//     res.sendFile(fileName, options, function(err) {
+//         if (err) {
+//             next(err);
+//         } else {
+//             console.log('Sent:', fileName);
+//         }
+//     });
+// });
 
 
 const port = 5001;
