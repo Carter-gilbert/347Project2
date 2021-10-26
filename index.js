@@ -87,7 +87,7 @@ service.get('/questions/:id', (request, response) => {
 // GET ALL
 service.get('/questions', (request, response) => {
     const query = 'SELECT * FROM project2 WHERE is_deleted = 0';
-    connection.query(query, parameters, (error, rows) => {
+    connection.query(query, (error, rows) => {
         if (error) {
             response.status(500);
             response.json({
