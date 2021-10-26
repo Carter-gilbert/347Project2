@@ -9,6 +9,7 @@ const connection = mysql.createConnection(credentials);
 const service = express();
 service.use(express.json());
 
+// .get ('/report.html',....) use sendFile (Should be about one line)
 
 connection.connect(error => {
     if (error) {
