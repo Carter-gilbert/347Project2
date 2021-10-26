@@ -216,8 +216,6 @@ service.delete('/questions/:id', (request, response) => {
 
 // deletes all values in the db
 service.delete('/questions/reset', (request, response) => {
-    const parameters = [parseInt(request.params.id)];
-
     const query = 'DELETE FROM project2';
     connection.query(query, parameters, (error, result) => {
         if (error) {
