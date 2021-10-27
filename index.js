@@ -219,6 +219,7 @@ service.delete('/questions/reset', (request, response) => {
     const query = 'UPDATE project2 SET is_deleted = 1 WHERE id > 0';
     connection.query(query, (error, result) => {
         if (error) {
+            console.error(error);
             response.status(404);
             response.json({
                 ok: false,
