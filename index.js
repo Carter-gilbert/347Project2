@@ -233,6 +233,25 @@ service.delete('/reset', (request, response) => {
     });
 });
 
+// deletes all values in the db
+service.delete('/hardreset', (request, response) => {
+    const query = 'DELETE FROM project2';
+    connection.query(query, (error, result) => {
+        if (error) {
+            console.error(error);
+            response.status(404);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            response.json({
+                ok: true,
+            });
+        }
+    });
+});
+
 
 
 // connection.end(); // connection stays open as long as service is running
