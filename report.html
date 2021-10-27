@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report</title>
+    <style>
+        h3 {
+            margin: 0px;
+        }
+    </style>
 
 </head>
 
@@ -33,19 +38,22 @@
     <h1>How to test my service: </h1>
 
     <h1>Get Requests:</h1>
-    <h3>https://carter-gilbert.me:8443/questions</h3>
+    <h3>https://carter-gilbert.me:8443/</h3>
+    <p>- Get all questions in DB that aren't deleted. </p>
     <h3>https://carter-gilbert.me:8443/questions/:id</h3>
-    <h3>Examples of how to use it with curl:</h3>
+    <p>- Get a question at ID</p>
+    <h3>Examples of this request:</h3>
 
     <pre>
-        <h3>curl https://carter-gilbert.me:8443/questions/</h3>
+        <h3>curl https://carter-gilbert.me:8443/ </h3>
         <h3>curl https://carter-gilbert.me:8443/questions/1</h3>
     </pre>
 
 
 
     <h1>Post Request:</h1>
-    <h3>https://carter-gilbert.me:8443/questions with a payload of Strings: question, answer1, answer2, answer3, and answer4 also the int correct_ans.</h3>
+    <h3>https://carter-gilbert.me:8443/questions </h3>
+    <p>This needs a payload of 5 Strings: question, answer1, answer2, answer3, and answer4 also the int correct_ans.</p>
     <h3>Example of this request:</h3>
     <pre>
         <h3>
@@ -57,31 +65,46 @@
 
 
     <h1>Patch Request:</h1>
-    <h3>https://carter-gilbert.me:8443/questions/:id with a payload of Strings: question, answer1, answer2, answer3, and answer4 also the int correct_ans.</h3>
-    <h3>https://carter-gilbert.me:8443/questions/recover/:id this can recover a deleted entry using the id</h3>
-    <h3>Example of these requests:</h3>
+    <h3>https://carter-gilbert.me:8443/questions/:id</h3>
+    <p> This needs a payload of 4 Strings: question, answer1, answer2, answer3, and answer4 also the int correct_ans. The ID in the url is the number it will patch.</p>
+    <h3>https://carter-gilbert.me:8443/questions/recover/:id </h3>
+    <p>This can recover a deleted entry using the id</p>
+    <h3>Examples of this request:</h3>
     <pre>
     <h3>
         curl --header 'Content-Type: application/json' \
   --request PATCH \
   --data '{"question": "What is 1+1?", "answer1": "2", "answer2": "11", "answer3": "73", "answer4": "10", "correct_ans": 1}' \
   https://carter-gilbert.me:8443/questions/1
-</h3>
-<h3>
+    </h3>
+    <h3>
     curl --request PATCH \
 https://carter-gilbert.me:8443/questions/recover/1
-</h3>
-</pre>
+    </h3>
+    </pre>
 
     <h1>Delete Request:</h1>
-    <h3>https://carter-gilbert.me:8443/questions/:id will delete the entry with id</h3>
-    <h3>Example of this request:</h3>
+    <h3>https://carter-gilbert.me:8443/questions/:id</h3>
+    <p>Will delete the entry with specified ID</p>
+
+    <h3>https://carter-gilbert.me:8443/reset</h3>
+    <p>This will set all entries in the DB to is_deleted</p>
+    <h3>https://carter-gilbert.me:8443/hardreset</h3>
+    <p>This will actually delete all entries in the field (not just set is_deleted to 1). </p>
+    <h3>Examples of this request:</h3>
     <pre>
     <h3>
         curl --request DELETE \
   https://carter-gilbert.me:8443/questions/1
-</h3>
-</pre>
+    </h3>
+    <h3>
+        curl --request DELETE \
+        https://carter-gilbert.me:8443/reset
+    </h3>
+    <h3>curl --request DELETE \
+        https://carter-gilbert.me:8443/hardreset
+    </h3>
+    </pre>
 
 
 </body>
