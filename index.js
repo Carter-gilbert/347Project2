@@ -215,8 +215,8 @@ service.delete('/questions/:id', (request, response) => {
 });
 
 // deletes all values in the db
-service.delete('/questions/reset', (request, response) => {
-    const query = 'UPDATE project2 SET is_deleted = 1 WHERE id > 0';
+service.delete('/reset', (request, response) => {
+    const query = 'UPDATE project2 SET is_deleted = 1';
     connection.query(query, (error, result) => {
         if (error) {
             console.error(error);
