@@ -87,7 +87,7 @@ service.get('/questions/:id', (request, response) => {
 });
 
 
-service.get('/questions', (request, response) => {
+service.get('/', (request, response) => {
     const query = 'SELECT * FROM project2 WHERE is_deleted = 0';
     connection.query(query, (error, rows) => {
         if (error) {
@@ -106,7 +106,7 @@ service.get('/questions', (request, response) => {
     });
 });
 
-service.post('/', (request, response) => {
+service.post('/questions', (request, response) => {
     if (request.body.hasOwnProperty('question') &&
         request.body.hasOwnProperty('answer1') &&
         request.body.hasOwnProperty('answer2') &&
