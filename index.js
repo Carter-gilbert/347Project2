@@ -106,6 +106,25 @@ service.get('/', (request, response) => {
     });
 });
 
+service.get('/deleted', (request, response) => {
+    const query = 'SELECT * FROM project2 WHERE is_deleted = 1';
+    connection.query(query, (error, rows) => {
+        if (error) {
+            response.status(500);
+            response.json({
+                ok: false,
+                results: error.message,
+            });
+        } else {
+            const question = rows.map(rowToQuestion);
+            response.json({
+                ok: true,
+                results: rows.map(rowToQuestion),
+            });
+        }
+    });
+});
+
 service.post('/questions', (request, response) => {
     if (request.body.hasOwnProperty('question') &&
         request.body.hasOwnProperty('answer1') &&
