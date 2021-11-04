@@ -47,6 +47,12 @@
 
     <h1>How to test my service: </h1>
 
+    <h2>Please Note, if any code fails ok should return false and results should have the error message. </h2>
+    <h3>For the POST request, if there if the proper data was not provided it should say "Incomplete memory"</h3>
+    <h2>In the event of a success, ok should return true and for: </h2>
+         <h3>GET requests the result should be the question, answers, and correct answer int. </h3>
+         <h3>POST requests the result should be id of the new data inputted.</h3>
+         <h3>PATH and DELETE requests should just have an ok with no result returned</h3>
     <h1>Get Requests:</h1>
     <h3>https://carter-gilbert.me:8443/</h3>
     <p>- Get all questions in DB that aren't deleted. </p>
